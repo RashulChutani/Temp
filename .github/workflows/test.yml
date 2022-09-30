@@ -1,0 +1,20 @@
+name: test
+on:
+  pull_request:
+jobs:
+   run-nightly-tests:
+     steps:
+       - name: Checkout
+         uses: actions/checkout@v2
+         with:
+           path: repo
+           persist-credentials: false
+           submodules: "recursive"
+           fetch-depth: 2
+
+       - name: Check Files Changed
+         shell: pwsh
+         id: check_file_changed
+         run: |
+           cd repo
+           git diff --name-only HEAD^ HEAD

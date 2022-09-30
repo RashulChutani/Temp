@@ -9,7 +9,7 @@ jobs:
          run: |
            mkdir rashul
            cd rashul
-           echo "Rashul" > r.txt 
+           echo "Rashul1" > r.txt 
        - name: Pushes to another repository
          id: push_directory
          uses: cpina/github-action-push-to-another-repository@main

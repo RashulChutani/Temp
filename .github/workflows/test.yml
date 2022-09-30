@@ -11,11 +11,16 @@ jobs:
            path: repo
            persist-credentials: false
            submodules: "recursive"
-           fetch-depth: 2
-
-       - name: Check Files Changed
-         shell: pwsh
-         id: check_file_changed
-         run: |
-           cd repo
-           git diff --name-only HEAD^ HEAD
+ 
+       - name: Pushes to another repository
+         id: push_directory
+         uses: cpina/github-action-push-to-another-repository@main
+         env:
+           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+         with:
+           source-directory: repo/
+           destination-github-username: 'RashulChutani'
+           destination-repository-name: 'Mapping'
+           user-email: rashul.chutani@gmail.com
+           commit-message: Testing
+           target-branch: main
